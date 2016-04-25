@@ -5,10 +5,40 @@
  */
 package br.ufs.decomp.genius.regra;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
- * @author Afonso
+ * @author Yago Oliveira
  */
 public class Controlador {
+
+    private List<Integer> sequenciaGenius;
+    private List<Integer> sequenciaJogador;
+
+    public Controlador() {
+        sequenciaGenius = new ArrayList<>();
+        sequenciaJogador = new ArrayList<>();
+    }
+
+    public void reiniciarSequencia() {
+        sequenciaGenius.clear();
+        sequenciaJogador.clear();
+    }
+
+    public List<Integer> getSequenciaGenius() {
+        return sequenciaGenius;
+    }
+
+    public List<Integer> getSequenciaJogador() {
+        return sequenciaJogador;
+    }
     
+    public boolean validaSequencia(int botao){
+        
+        return false;
+    }
+    
+
 }
