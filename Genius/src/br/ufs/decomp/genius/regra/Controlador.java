@@ -7,6 +7,7 @@ package br.ufs.decomp.genius.regra;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -14,31 +15,25 @@ import java.util.List;
  */
 public class Controlador {
 
+    private int tamanhoMaximo;
     private List<Integer> sequenciaGenius;
-    private List<Integer> sequenciaJogador;
 
-    public Controlador() {
+    public Controlador(int tamanhoMaximo) {
+        this.tamanhoMaximo = tamanhoMaximo;
+        gerarSequencia();
+    }
+
+    private void gerarSequencia() {
+        Random random = new Random();
         sequenciaGenius = new ArrayList<>();
-        sequenciaJogador = new ArrayList<>();
+        for (int i = 0; i < tamanhoMaximo; i++) {
+            int numero = random.nextInt(4) + 1;
+            sequenciaGenius.add(numero);
+        }
     }
-
-    public void reiniciarSequencia() {
-        sequenciaGenius.clear();
-        sequenciaJogador.clear();
-    }
-
-    public List<Integer> getSequenciaGenius() {
+    
+    public List<Integer> getSequencia() {
         return sequenciaGenius;
     }
-
-    public List<Integer> getSequenciaJogador() {
-        return sequenciaJogador;
-    }
-    
-    public boolean validaSequencia(int botao){
-        
-        return false;
-    }
-    
 
 }
