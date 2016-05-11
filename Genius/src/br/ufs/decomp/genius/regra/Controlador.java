@@ -36,10 +36,11 @@ public class Controlador {
         }
     }
     
-    public List<Integer> getProximaSequencia() {
-        posicao++;
-        sequenciaParcial.add(sequenciaGenius.get(posicao));
-        return sequenciaParcial;
+    public Integer getProximaSequencia() {
+        if (posicao < sequenciaGenius.size() - 1) {
+            posicao++;
+        }
+        return sequenciaGenius.get(posicao);
     }
 
 }

@@ -5,8 +5,11 @@
  */
 package br.ufs.decomp.genius;
 
+import br.ufs.decomp.genius.regra.Controlador;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javazoom.jl.decoder.JavaLayerException;
@@ -23,6 +26,7 @@ public class Genius extends javax.swing.JFrame {
      */
     public Genius() {
         initComponents();
+        jogo();
     }
 
     /**
@@ -35,45 +39,45 @@ public class Genius extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnAmarelo = new javax.swing.JButton();
+        btnAzul = new javax.swing.JButton();
+        btnVerde = new javax.swing.JButton();
+        btnVermelho = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_off.png"))); // NOI18N
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButton1.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton1.setMaximumSize(new java.awt.Dimension(303, 287));
-        jButton1.setMinimumSize(new java.awt.Dimension(303, 287));
-        jButton1.setPreferredSize(new java.awt.Dimension(303, 287));
-        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_on.png"))); // NOI18N
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 290, -1));
+        btnAmarelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_off.png"))); // NOI18N
+        btnAmarelo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAmarelo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnAmarelo.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnAmarelo.setMaximumSize(new java.awt.Dimension(303, 287));
+        btnAmarelo.setMinimumSize(new java.awt.Dimension(303, 287));
+        btnAmarelo.setPreferredSize(new java.awt.Dimension(303, 287));
+        btnAmarelo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_on.png"))); // NOI18N
+        jPanel1.add(btnAmarelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 290, -1));
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png"))); // NOI18N
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButton4.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton4.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png"))); // NOI18N
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 297, -1, -1));
+        btnAzul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png"))); // NOI18N
+        btnAzul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnAzul.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnAzul.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnAzul.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png"))); // NOI18N
+        jPanel1.add(btnAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 297, -1, -1));
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png"))); // NOI18N
-        jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton6.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButton6.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton6.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png"))); // NOI18N
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        btnVerde.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png"))); // NOI18N
+        btnVerde.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnVerde.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnVerde.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnVerde.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png"))); // NOI18N
+        jPanel1.add(btnVerde, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png"))); // NOI18N
-        jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jButton5.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButton5.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jButton5.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png"))); // NOI18N
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 297, -1, -1));
+        btnVermelho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png"))); // NOI18N
+        btnVermelho.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        btnVermelho.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        btnVermelho.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnVermelho.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png"))); // NOI18N
+        jPanel1.add(btnVermelho, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 297, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -126,37 +130,65 @@ public class Genius extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Genius().setVisible(true);
-                new Thread() {
-                    @Override
-                    public void run() {
-                        try {
-
-                            FileInputStream in;
-                            //Inicializa o FileInputStream com o endereço do arquivo para tocar
-                            in = new FileInputStream("C:\\Users\\Afonso\\Music\\Sounds\\intro.mp3");
-
-                            //Cria uma instancia da classe player passando para ele o InpuStream do arquivo
-                            Player p = new Player(in);
-
-                            //executa o som
-                            p.play();
-
-                        } catch (FileNotFoundException ex) {
-                            Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (JavaLayerException ex) {
-                            Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }.start();
+//                new Thread() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//
+//                            FileInputStream in;
+//                            //Inicializa o FileInputStream com o endereço do arquivo para tocar
+//                            in = new FileInputStream("C:\\Users\\Afonso\\Music\\Sounds\\intro.mp3");
+//
+//                            //Cria uma instancia da classe player passando para ele o InpuStream do arquivo
+//                            Player p = new Player(in);
+//
+//                            //executa o som
+//                            p.play();
+//
+//                        } catch (FileNotFoundException ex) {
+//                            Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
+//                        } catch (JavaLayerException ex) {
+//                            Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
+//                        }
+//                    }
+//                }.start();
             }
         });
+        
+    }
+    
+    private void jogo() {
+        Controlador controlador = new Controlador(36);
+        boolean fim = true;
+        
+        do {
+            List<Integer> sequencia = new ArrayList<>();
+            sequencia.add(controlador.getProximaSequencia());
+            
+            for (Integer item : sequencia) {
+                switch (item) {
+                    case 1:
+                        btnVerde.doClick(2000);
+                        break;
+                    case 2:
+                        btnAmarelo.doClick(2000);
+                        break;
+                    case 3:
+                        btnVermelho.doClick(2000);
+                        break;
+                    case 4:
+                        btnAzul.doClick(2000);
+                        break;
+                }
+            }
+        } while (!fim);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btnAmarelo;
+    private javax.swing.JButton btnAzul;
+    private javax.swing.JButton btnVerde;
+    private javax.swing.JButton btnVermelho;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
