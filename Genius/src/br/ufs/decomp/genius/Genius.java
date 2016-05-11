@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -25,6 +27,7 @@ public class Genius extends javax.swing.JFrame {
     private List<Integer> sequenciaGenius;
     private int posicao;
     boolean errou;
+    boolean fim;
     private Controlador controlador;
 
     /**
@@ -36,6 +39,7 @@ public class Genius extends javax.swing.JFrame {
         sequenciaGenius = new ArrayList<>();
         posicao = 0;
         errou = false;
+        fim = false;
     }
 
     /**
@@ -68,7 +72,6 @@ public class Genius extends javax.swing.JFrame {
         btnAmarelo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAmareloMouseClicked(evt);
-                continua(evt);
             }
         });
         jPanel1.add(btnAmarelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 290, -1));
@@ -81,7 +84,6 @@ public class Genius extends javax.swing.JFrame {
         btnAzul.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAzulMouseClicked(evt);
-                continua(evt);
             }
         });
         jPanel1.add(btnAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 297, -1, -1));
@@ -94,7 +96,6 @@ public class Genius extends javax.swing.JFrame {
         btnVerde.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVerdeMouseClicked(evt);
-                continua(evt);
             }
         });
         jPanel1.add(btnVerde, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
@@ -107,7 +108,6 @@ public class Genius extends javax.swing.JFrame {
         btnVermelho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVermelhoMouseClicked(evt);
-                continua(evt);
             }
         });
         jPanel1.add(btnVermelho, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 297, -1, -1));
@@ -137,20 +137,35 @@ public class Genius extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
         }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                jogo();
+            }
+        });
     }//GEN-LAST:event_btnAmareloMouseClicked
 
     private void btnAzulMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAzulMouseClicked
         if (sequenciaGenius.get(posicao) != 4) {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
-        } 
+        }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                jogo();
+            }
+        });
     }//GEN-LAST:event_btnAzulMouseClicked
 
     private void btnVerdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerdeMouseClicked
         if (sequenciaGenius.get(posicao) != 1) {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
-        } 
+        }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                jogo();
+            }
+        });
     }//GEN-LAST:event_btnVerdeMouseClicked
 
     private void btnVermelhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVermelhoMouseClicked
@@ -158,13 +173,12 @@ public class Genius extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
         }
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                jogo();
+            }
+        });
     }//GEN-LAST:event_btnVermelhoMouseClicked
-
-    private void continua(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continua
-        if(!errou) {
-            jogo();
-        }
-    }//GEN-LAST:event_continua
 
     /**
      * @param args the command line arguments
@@ -228,26 +242,37 @@ public class Genius extends javax.swing.JFrame {
 
     private void jogo() {
         try {
-            posicao = 0;
-            Thread.sleep(1000);
+            if (!errou && !fim) {
+                Thread.sleep(1000);
 
-            sequenciaGenius.add(controlador.getProximaSequencia());
+                sequenciaGenius.add(controlador.getProximaSequencia());
 
-            for (Integer item : sequenciaGenius) {
-                switch (item) {
-                    case 1:
-                        btnVerde.doClick(2000);
-                        break;
-                    case 2:
-                        btnAmarelo.doClick(2000);
-                        break;
-                    case 3:
-                        btnVermelho.doClick(2000);
-                        break;
-                    case 4:
-                        btnAzul.doClick(2000);
-                        break;
+                for (Integer item : sequenciaGenius) {
+                    switch (item) {
+                        case 1:
+                            btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png")));
+                            Thread.sleep(2000);
+                            btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png")));
+                            break;
+                        case 2:
+                            btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_on.png")));
+                            Thread.sleep(2000);
+                            btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_off.png")));
+                            break;
+                        case 3:
+                            btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png")));
+                            Thread.sleep(2000);
+                            btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png")));
+                            break;
+                        case 4:
+                            btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png")));
+                            Thread.sleep(2000);
+                            btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png")));
+                            break;
+                    }
                 }
+            } else {
+                posicao = 0;
             }
         } catch (InterruptedException ex) {
             Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
