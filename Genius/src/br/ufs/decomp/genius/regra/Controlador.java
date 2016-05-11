@@ -17,10 +17,14 @@ public class Controlador {
 
     private int tamanhoMaximo;
     private List<Integer> sequenciaGenius;
+    private List<Integer> sequenciaParcial;
+    private int posicao;
 
     public Controlador(int tamanhoMaximo) {
         this.tamanhoMaximo = tamanhoMaximo;
         gerarSequencia();
+        sequenciaParcial = new ArrayList<>();
+        posicao = 0;
     }
 
     private void gerarSequencia() {
@@ -32,8 +36,10 @@ public class Controlador {
         }
     }
     
-    public List<Integer> getSequencia() {
-        return sequenciaGenius;
+    public List<Integer> getProximaSequencia() {
+        posicao++;
+        sequenciaParcial.add(sequenciaGenius.get(posicao));
+        return sequenciaParcial;
     }
 
 }
