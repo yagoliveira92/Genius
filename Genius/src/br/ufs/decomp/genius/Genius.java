@@ -127,9 +127,9 @@ public class Genius extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Genius().setVisible(true);
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Genius().setVisible(true);
 //                new Thread() {
 //                    @Override
 //                    public void run() {
@@ -152,9 +152,11 @@ public class Genius extends javax.swing.JFrame {
 //                        }
 //                    }
 //                }.start();
-            }
-        });
-        
+//            }
+//        });
+        Genius genius = new Genius();
+        genius.setVisible(true);
+        genius.jogo();
     }
     
     private void jogo() {
