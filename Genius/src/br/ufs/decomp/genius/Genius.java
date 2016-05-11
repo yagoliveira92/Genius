@@ -137,11 +137,14 @@ public class Genius extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                jogo();
-            }
-        });
+        if (posicao == sequenciaGenius.size() - 1) {
+            new Thread() {
+                public void run() {
+                    jogo();
+                }
+            }.start();
+        }
+        posicao++;
     }//GEN-LAST:event_btnAmareloMouseClicked
 
     private void btnAzulMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAzulMouseClicked
@@ -149,11 +152,14 @@ public class Genius extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                jogo();
-            }
-        });
+        if (posicao == sequenciaGenius.size() - 1) {
+            new Thread() {
+                public void run() {
+                    jogo();
+                }
+            }.start();
+        }
+        posicao++;
     }//GEN-LAST:event_btnAzulMouseClicked
 
     private void btnVerdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerdeMouseClicked
@@ -161,11 +167,14 @@ public class Genius extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                jogo();
-            }
-        });
+        if (posicao == sequenciaGenius.size() - 1) {
+            new Thread() {
+                public void run() {
+                    jogo();
+                }
+            }.start();
+        }
+        posicao++;
     }//GEN-LAST:event_btnVerdeMouseClicked
 
     private void btnVermelhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVermelhoMouseClicked
@@ -173,11 +182,14 @@ public class Genius extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Errou!");
             errou = true;
         }
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                jogo();
-            }
-        });
+        if (posicao == sequenciaGenius.size() - 1) {
+            new Thread() {
+                public void run() {
+                    jogo();
+                }
+            }.start();
+        }
+        posicao++;
     }//GEN-LAST:event_btnVermelhoMouseClicked
 
     /**
@@ -243,6 +255,8 @@ public class Genius extends javax.swing.JFrame {
     private void jogo() {
         try {
             if (!errou && !fim) {
+                posicao = 0;
+                
                 Thread.sleep(1000);
 
                 sequenciaGenius.add(controlador.getProximaSequencia());
@@ -251,29 +265,31 @@ public class Genius extends javax.swing.JFrame {
                     switch (item) {
                         case 1:
                             btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png")));
-                            Thread.sleep(2000);
+                            Thread.sleep(1000);
                             btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png")));
+                            Thread.sleep(500);
                             break;
                         case 2:
                             btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_on.png")));
-                            Thread.sleep(2000);
+                            Thread.sleep(1000);
                             btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_off.png")));
+                            Thread.sleep(500);
                             break;
                         case 3:
                             btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png")));
-                            Thread.sleep(2000);
+                            Thread.sleep(1000);
                             btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png")));
+                            Thread.sleep(500);
                             break;
                         case 4:
                             btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png")));
-                            Thread.sleep(2000);
+                            Thread.sleep(1000);
                             btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png")));
+                            Thread.sleep(500);
                             break;
                     }
                 }
-            } else {
-                posicao = 0;
-            }
+            } 
         } catch (InterruptedException ex) {
             Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
         }
