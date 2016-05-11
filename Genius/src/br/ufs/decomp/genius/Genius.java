@@ -59,6 +59,8 @@ public class Genius {
         String sequenciaParcial = new String();
         String sequenciaUsuario = new String();
         Scanner input = new Scanner(System.in);
+        int recordeAtual = 0;
+        int recordeGeral = 0;
 
         do {
             for (i = 0; i < sequencia.size(); i++) {
@@ -68,11 +70,20 @@ public class Genius {
                 System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
                 System.out.println("Qual foi o número?");
                 sequenciaUsuario = input.next();
-                if (! sequenciaUsuario.equals(sequenciaParcial)) {
+                if (!sequenciaUsuario.equals(sequenciaParcial)) {
                     System.out.println("ERROU!");
-                    System.out.println("Você digitou "+sequenciaUsuario+" e era "+sequenciaParcial);
+                    System.out.println("Você digitou " + sequenciaUsuario + " e era " + sequenciaParcial);
+                    System.out.println("Você fez: " + recordeAtual + " a maior pontuação"
+                            + " é de: " + recordeGeral);
+                    recordeAtual = 0;
                     sequencia.clear();
                     j = 1;
+                } else {
+                    recordeAtual++;
+                    if (recordeAtual > recordeGeral) {
+                        recordeGeral = recordeAtual;
+                    }
+
                 }
 
             }
