@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -21,12 +22,20 @@ import javazoom.jl.player.Player;
  */
 public class Genius extends javax.swing.JFrame {
 
+    private List<Integer> sequenciaGenius;
+    private int posicao;
+    boolean errou;
+    private Controlador controlador;
+
     /**
      * Creates new form Genius
      */
     public Genius() {
         initComponents();
-        jogo();
+        controlador = new Controlador(36);
+        sequenciaGenius = new ArrayList<>();
+        posicao = 0;
+        errou = false;
     }
 
     /**
@@ -56,6 +65,12 @@ public class Genius extends javax.swing.JFrame {
         btnAmarelo.setMinimumSize(new java.awt.Dimension(303, 287));
         btnAmarelo.setPreferredSize(new java.awt.Dimension(303, 287));
         btnAmarelo.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_on.png"))); // NOI18N
+        btnAmarelo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAmareloMouseClicked(evt);
+                continua(evt);
+            }
+        });
         jPanel1.add(btnAmarelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 290, -1));
 
         btnAzul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png"))); // NOI18N
@@ -63,6 +78,12 @@ public class Genius extends javax.swing.JFrame {
         btnAzul.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnAzul.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnAzul.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png"))); // NOI18N
+        btnAzul.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnAzulMouseClicked(evt);
+                continua(evt);
+            }
+        });
         jPanel1.add(btnAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 297, -1, -1));
 
         btnVerde.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png"))); // NOI18N
@@ -70,6 +91,12 @@ public class Genius extends javax.swing.JFrame {
         btnVerde.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnVerde.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnVerde.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png"))); // NOI18N
+        btnVerde.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVerdeMouseClicked(evt);
+                continua(evt);
+            }
+        });
         jPanel1.add(btnVerde, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         btnVermelho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png"))); // NOI18N
@@ -77,6 +104,12 @@ public class Genius extends javax.swing.JFrame {
         btnVermelho.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         btnVermelho.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnVermelho.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png"))); // NOI18N
+        btnVermelho.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnVermelhoMouseClicked(evt);
+                continua(evt);
+            }
+        });
         jPanel1.add(btnVermelho, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 297, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,6 +131,40 @@ public class Genius extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAmareloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAmareloMouseClicked
+        if (sequenciaGenius.get(posicao) != 2) {
+            JOptionPane.showMessageDialog(null, "Errou!");
+            errou = true;
+        }
+    }//GEN-LAST:event_btnAmareloMouseClicked
+
+    private void btnAzulMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAzulMouseClicked
+        if (sequenciaGenius.get(posicao) != 4) {
+            JOptionPane.showMessageDialog(null, "Errou!");
+            errou = true;
+        } 
+    }//GEN-LAST:event_btnAzulMouseClicked
+
+    private void btnVerdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerdeMouseClicked
+        if (sequenciaGenius.get(posicao) != 1) {
+            JOptionPane.showMessageDialog(null, "Errou!");
+            errou = true;
+        } 
+    }//GEN-LAST:event_btnVerdeMouseClicked
+
+    private void btnVermelhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVermelhoMouseClicked
+        if (sequenciaGenius.get(posicao) != 3) {
+            JOptionPane.showMessageDialog(null, "Errou!");
+            errou = true;
+        }
+    }//GEN-LAST:event_btnVermelhoMouseClicked
+
+    private void continua(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continua
+        if(!errou) {
+            jogo();
+        }
+    }//GEN-LAST:event_continua
 
     /**
      * @param args the command line arguments
@@ -158,16 +225,15 @@ public class Genius extends javax.swing.JFrame {
         genius.setVisible(true);
         genius.jogo();
     }
-    
+
     private void jogo() {
-        Controlador controlador = new Controlador(36);
-        boolean fim = true;
-        
-        do {
-            List<Integer> sequencia = new ArrayList<>();
-            sequencia.add(controlador.getProximaSequencia());
-            
-            for (Integer item : sequencia) {
+        try {
+            posicao = 0;
+            Thread.sleep(1000);
+
+            sequenciaGenius.add(controlador.getProximaSequencia());
+
+            for (Integer item : sequenciaGenius) {
                 switch (item) {
                     case 1:
                         btnVerde.doClick(2000);
@@ -183,7 +249,9 @@ public class Genius extends javax.swing.JFrame {
                         break;
                 }
             }
-        } while (!fim);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
