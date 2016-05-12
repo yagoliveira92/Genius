@@ -39,8 +39,11 @@ public class Controlador {
     public Integer getProximaSequencia() {
         if (posicao < sequenciaGenius.size() - 1) {
             posicao++;
+            return sequenciaGenius.get(posicao);
+        } else {
+            return null;
         }
-        return sequenciaGenius.get(posicao);
+        
     }
 
 }

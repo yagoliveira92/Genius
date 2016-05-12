@@ -28,18 +28,34 @@ public class Genius extends javax.swing.JFrame {
     private int posicao;
     boolean errou;
     boolean fim;
+    boolean inicio;
+    boolean respondeu;
     private Controlador controlador;
 
     /**
      * Creates new form Genius
      */
-    public Genius() {
+    public Genius(int dificuldade) {
         initComponents();
-        controlador = new Controlador(36);
+        switch (dificuldade) {
+            case 1:
+                controlador = new Controlador(8);
+                break;
+            case 2:
+                controlador = new Controlador(14);
+                break;
+            case 3:
+                controlador = new Controlador(20);
+                break;
+            case 4:
+                controlador = new Controlador(31);
+                break;
+        }
         sequenciaGenius = new ArrayList<>();
         posicao = 0;
         errou = false;
         fim = false;
+        inicio = false;
     }
 
     /**
@@ -133,168 +149,239 @@ public class Genius extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAmareloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAmareloMouseClicked
-        if (sequenciaGenius.get(posicao) != 2) {
-            JOptionPane.showMessageDialog(null, "Errou!");
-            errou = true;
-        }
-        if (posicao == sequenciaGenius.size() - 1) {
-            new Thread() {
-                public void run() {
-                    jogo();
+        try {
+            if (inicio && !errou && !fim) {
+                if (sequenciaGenius.get(posicao) != 2) {
+                    tocaErro();
+                    JOptionPane.showMessageDialog(null, "Errou!");
+                    errou = true;
+                    return;
                 }
-            }.start();
+                tocaClique();
+                if (posicao == sequenciaGenius.size() - 1) {
+                    continuaJogo();
+                }
+                posicao++;
+                respondeu = true;
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
         }
-        posicao++;
     }//GEN-LAST:event_btnAmareloMouseClicked
 
     private void btnAzulMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAzulMouseClicked
-        if (sequenciaGenius.get(posicao) != 4) {
-            JOptionPane.showMessageDialog(null, "Errou!");
-            errou = true;
+        if (inicio && !errou && !fim) {
+            if (sequenciaGenius.get(posicao) != 4) {
+                tocaErro();
+                JOptionPane.showMessageDialog(null, "Errou!");
+                errou = true;
+                return;
+            }
+            tocaClique();
+            if (posicao == sequenciaGenius.size() - 1) {
+                continuaJogo();
+            }
+            posicao++;
+            respondeu = true;
         }
-        if (posicao == sequenciaGenius.size() - 1) {
-            new Thread() {
-                public void run() {
-                    jogo();
-                }
-            }.start();
-        }
-        posicao++;
     }//GEN-LAST:event_btnAzulMouseClicked
 
     private void btnVerdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerdeMouseClicked
-        if (sequenciaGenius.get(posicao) != 1) {
-            JOptionPane.showMessageDialog(null, "Errou!");
-            errou = true;
+        if (inicio && !errou && !fim) {
+            if (sequenciaGenius.get(posicao) != 1) {
+                tocaErro();
+                JOptionPane.showMessageDialog(null, "Errou!");
+                errou = true;
+                return;
+            }
+            tocaClique();
+            if (posicao == sequenciaGenius.size() - 1) {
+                continuaJogo();
+            }
+            posicao++;
+            respondeu = true;
         }
-        if (posicao == sequenciaGenius.size() - 1) {
-            new Thread() {
-                public void run() {
-                    jogo();
-                }
-            }.start();
-        }
-        posicao++;
     }//GEN-LAST:event_btnVerdeMouseClicked
 
     private void btnVermelhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVermelhoMouseClicked
-        if (sequenciaGenius.get(posicao) != 3) {
-            JOptionPane.showMessageDialog(null, "Errou!");
-            errou = true;
+        if (inicio && !errou && !fim) {
+            if (sequenciaGenius.get(posicao) != 3) {
+                tocaErro();
+                JOptionPane.showMessageDialog(null, "Errou!");
+                errou = true;
+                return;
+            }
+            tocaClique();
+            if (posicao == sequenciaGenius.size() - 1) {
+                continuaJogo();
+            }
+            posicao++;
+            respondeu = true;
         }
-        if (posicao == sequenciaGenius.size() - 1) {
-            new Thread() {
-                public void run() {
-                    jogo();
-                }
-            }.start();
-        }
-        posicao++;
     }//GEN-LAST:event_btnVermelhoMouseClicked
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Genius.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Genius.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Genius.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Genius.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-        //</editor-fold>
-
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Genius().setVisible(true);
-//                new Thread() {
-//                    @Override
-//                    public void run() {
-//                        try {
-//
-//                            FileInputStream in;
-//                            //Inicializa o FileInputStream com o endereço do arquivo para tocar
-//                            in = new FileInputStream("C:\\Users\\Afonso\\Music\\Sounds\\intro.mp3");
-//
-//                            //Cria uma instancia da classe player passando para ele o InpuStream do arquivo
-//                            Player p = new Player(in);
-//
-//                            //executa o som
-//                            p.play();
-//
-//                        } catch (FileNotFoundException ex) {
-//                            Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
-//                        } catch (JavaLayerException ex) {
-//                            Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
-//                        }
-//                    }
-//                }.start();
-//            }
-//        });
-        Genius genius = new Genius();
+        Genius genius = new Genius(1);
         genius.setVisible(true);
+//        try {
+//            Player p = new Player(Genius.class.getResourceAsStream("/br/ufs/decomp/genius/sons/intro.mp3"));
+//
+//            //executa o som
+//            p.play();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "ERRO");
+//        }
         genius.jogo();
+
+    }
+
+    private void tocaClique() {
+        try {
+            Player p = new Player(getClass().getResourceAsStream("/br/ufs/decomp/genius/sons/clique.mp3"));
+
+            //executa o som
+            p.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
+    }
+
+    private void tocaErro() {
+        try {
+            Player p = new Player(getClass().getResourceAsStream("/br/ufs/decomp/genius/sons/errou.mp3"));
+
+            //executa o som
+            p.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
+    }
+
+    private void tocaAcesso() {
+        try {
+            Player p = new Player(getClass().getResourceAsStream("/br/ufs/decomp/genius/sons/acende.mp3"));
+
+            //executa o som
+            p.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
+    }
+
+    private void tocaVitoria() {
+        try {
+            Player p = new Player(getClass().getResourceAsStream("/br/ufs/decomp/genius/sons/victory.mp3"));
+
+            //executa o som
+            p.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
+    }
+
+    private void tocaDerrota() {
+        try {
+            Player p = new Player(getClass().getResourceAsStream("/br/ufs/decomp/genius/sons/game_over.mp3"));
+
+            //executa o som
+            p.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
+    }
+
+    public void continuaJogo() {
+        new Thread() {
+            public void run() {
+                jogo();
+            }
+        }.start();
+    }
+
+    public void validador() {
+        new Thread() {
+            public void run() {
+                try {
+                    Thread.sleep(5000);
+                    if (!respondeu) {
+                        Player p = new Player(getClass().getResourceAsStream("/br/ufs/decomp/genius/sons/errou.mp3"));
+
+                        //executa o som
+                        p.play();
+                        errou = true;
+                        JOptionPane.showMessageDialog(null, "Demorou demais!");
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "ERRO");
+                }
+            }
+        }.start();
     }
 
     private void jogo() {
         try {
+            if (!inicio) {
+                inicio = true;
+            }
             if (!errou && !fim) {
+                respondeu = true;
+
                 posicao = 0;
-                
+
                 Thread.sleep(1000);
 
-                sequenciaGenius.add(controlador.getProximaSequencia());
+                Integer proximo = controlador.getProximaSequencia();
+                if (proximo != null) {
+                    sequenciaGenius.add(proximo);
 
-                for (Integer item : sequenciaGenius) {
-                    switch (item) {
-                        case 1:
-                            btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png")));
-                            Thread.sleep(1000);
-                            btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png")));
-                            Thread.sleep(500);
-                            break;
-                        case 2:
-                            btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_on.png")));
-                            Thread.sleep(1000);
-                            btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_off.png")));
-                            Thread.sleep(500);
-                            break;
-                        case 3:
-                            btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png")));
-                            Thread.sleep(1000);
-                            btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png")));
-                            Thread.sleep(500);
-                            break;
-                        case 4:
-                            btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png")));
-                            Thread.sleep(1000);
-                            btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png")));
-                            Thread.sleep(500);
-                            break;
+                    for (Integer item : sequenciaGenius) {
+
+                        switch (item) {
+                            case 1:
+                                btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png")));
+                                tocaAcesso();
+                                Thread.sleep(1000);
+                                btnVerde.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png")));
+                                Thread.sleep(500);
+                                break;
+                            case 2:
+                                btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_on.png")));
+                                tocaAcesso();
+                                Thread.sleep(1000);
+                                btnAmarelo.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_off.png")));
+                                Thread.sleep(500);
+                                break;
+                            case 3:
+                                btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png")));
+                                tocaAcesso();
+                                Thread.sleep(1000);
+                                btnVermelho.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png")));
+                                Thread.sleep(500);
+                                break;
+                            case 4:
+                                btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png")));
+                                tocaAcesso();
+                                Thread.sleep(1000);
+                                btnAzul.setIcon(new ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png")));
+                                Thread.sleep(500);
+                                break;
+                        }
                     }
+                    respondeu = false;
+                    validador();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Parabéns! Você venceu.");
+                    tocaVitoria();
+                    tocaDerrota();
                 }
-            } 
+            }
         } catch (InterruptedException ex) {
             Logger.getLogger(Genius.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAmarelo;
     private javax.swing.JButton btnAzul;
