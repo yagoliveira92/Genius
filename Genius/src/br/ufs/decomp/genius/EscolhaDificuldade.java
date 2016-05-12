@@ -9,15 +9,16 @@ import javazoom.jl.player.Player;
  * and open the template in the editor.
  */
 /**
+ * Classe para Escolha de Dificuldade do jogo Genius.
  *
- * @author yagoliveira92
+ * @author Yago Oliveira e Edson Marques
  */
 public class EscolhaDificuldade extends javax.swing.JFrame {
 
     public int escolha;
 
     /**
-     * Creates new form EscolhaDificuldade
+     * Inicialização dos componentes da classe.
      */
     public EscolhaDificuldade() {
         initComponents();
@@ -117,7 +118,12 @@ public class EscolhaDificuldade extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Construtor do botão que passa o clique do mouse como parâmetro. Ao clicar
+     * o método gera uma thread que inicia o jogo em outra JFrame.
+     *
+     * @param evt
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new Thread(() -> {
             Genius genius = new Genius(1);
@@ -135,6 +141,12 @@ public class EscolhaDificuldade extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    /**
+     * Construtor do botão que passa o clique do mouse como parâmetro. Ao clicar
+     * o método gera uma thread que inicia o jogo em outra JFrame.
+     *
+     * @param evt
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         new Thread(() -> {
             Genius genius = new Genius(2);
@@ -151,6 +163,12 @@ public class EscolhaDificuldade extends javax.swing.JFrame {
         }).start();
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    /**
+     * Construtor do botão que passa o clique do mouse como parâmetro. Ao clicar
+     * o método gera uma thread que inicia o jogo em outra JFrame.
+     *
+     * @param evt
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         new Thread(() -> {
             Genius genius = new Genius(3);
@@ -167,6 +185,12 @@ public class EscolhaDificuldade extends javax.swing.JFrame {
         }).start();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    /**
+     * Construtor do botão que passa o clique do mouse como parâmetro. Ao clicar
+     * o método gera uma thread que inicia o jogo em outra JFrame.
+     *
+     * @param evt
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new Thread(() -> {
             Genius genius = new Genius(4);
@@ -182,14 +206,11 @@ public class EscolhaDificuldade extends javax.swing.JFrame {
             genius.jogo();
         }).start();
     }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
+     * Main da Classe EscolhaDificuldade
+     *
      * @param args the command line arguments
      */
-    public int retornoGenius() {
-        return escolha;
-    }
-
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

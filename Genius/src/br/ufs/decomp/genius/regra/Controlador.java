@@ -10,8 +10,9 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * Método que contem a regra de negócio do jogo Genius
  *
- * @author Yago Oliveira
+ * @author Yago Oliveira e Edson Marques
  */
 public class Controlador {
 
@@ -20,6 +21,11 @@ public class Controlador {
     private List<Integer> sequenciaParcial;
     private int posicao;
 
+    /**
+     * Método para determinar o tamanho máximo da sequência.
+     *
+     * @param tamanhoMaximo
+     */
     public Controlador(int tamanhoMaximo) {
         this.tamanhoMaximo = tamanhoMaximo;
         gerarSequencia();
@@ -27,6 +33,10 @@ public class Controlador {
         posicao = 0;
     }
 
+    /**
+     * Método para determinar o tamanho máximo da sequência.
+     *
+     */
     private void gerarSequencia() {
         Random random = new Random();
         sequenciaGenius = new ArrayList<>();
@@ -35,7 +45,11 @@ public class Controlador {
             sequenciaGenius.add(numero);
         }
     }
-    
+
+    /**
+     * Método para iniciar uma nova sequência sempre que a anterior for
+     * concluida.
+     */
     public Integer getProximaSequencia() {
         if (posicao < sequenciaGenius.size() - 1) {
             posicao++;
@@ -43,7 +57,7 @@ public class Controlador {
         } else {
             return null;
         }
-        
+
     }
 
 }
