@@ -78,9 +78,9 @@ public class Genius extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnAmarelo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/amarelo_off.png"))); // NOI18N
+        btnAmarelo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnAmarelo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAmarelo.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        btnAmarelo.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnAmarelo.setMaximumSize(new java.awt.Dimension(303, 287));
         btnAmarelo.setMinimumSize(new java.awt.Dimension(303, 287));
         btnAmarelo.setPreferredSize(new java.awt.Dimension(303, 287));
@@ -93,9 +93,9 @@ public class Genius extends javax.swing.JFrame {
         jPanel1.add(btnAmarelo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 290, -1));
 
         btnAzul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_off.png"))); // NOI18N
+        btnAzul.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnAzul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnAzul.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        btnAzul.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnAzul.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/azul_on.png"))); // NOI18N
         btnAzul.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -105,21 +105,21 @@ public class Genius extends javax.swing.JFrame {
         jPanel1.add(btnAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 297, -1, -1));
 
         btnVerde.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_off.png"))); // NOI18N
+        btnVerde.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnVerde.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnVerde.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        btnVerde.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnVerde.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/verde_on.png"))); // NOI18N
         btnVerde.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVerdeMouseClicked(evt);
             }
         });
-        jPanel1.add(btnVerde, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jPanel1.add(btnVerde, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         btnVermelho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_off.png"))); // NOI18N
+        btnVermelho.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         btnVermelho.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnVermelho.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        btnVermelho.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnVermelho.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/br/ufs/decomp/genius/images/vermelho_on.png"))); // NOI18N
         btnVermelho.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -134,8 +134,7 @@ public class Genius extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,14 +225,14 @@ public class Genius extends javax.swing.JFrame {
     public static void main(String args[]) {
         Genius genius = new Genius(1);
         genius.setVisible(true);
-//        try {
-//            Player p = new Player(Genius.class.getResourceAsStream("/br/ufs/decomp/genius/sons/intro.mp3"));
-//
-//            //executa o som
-//            p.play();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "ERRO");
-//        }
+        try {
+            Player p = new Player(Genius.class.getResourceAsStream("/br/ufs/decomp/genius/sons/intro.mp3"));
+
+            //executa o som
+            p.play();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERRO");
+        }
         genius.jogo();
 
     }
@@ -321,7 +320,7 @@ public class Genius extends javax.swing.JFrame {
         }.start();
     }
 
-    private void jogo() {
+    public void jogo() {
         try {
             if (!inicio) {
                 inicio = true;
